@@ -1,4 +1,5 @@
 ﻿using Antlr4.Runtime;
+using Antlr4.Runtime.Tree;
 using System.Globalization;
 using System.Net.Http.Headers;
 
@@ -18,6 +19,12 @@ namespace PJPproject
       salangParser parser = new salangParser(tokens);
 
       parser.AddErrorListener(new VerboseListener());
+      IParseTree tree = parser.prog();
+
+      if (parser.NumberOfSyntaxErrors == 0)
+      {
+        Console.WriteLine("Bez chyby");
+      }
     }
   }
 }
