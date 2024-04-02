@@ -8,6 +8,7 @@ stat
     | primitive_type ID (COMA ID)* SEMI
     | IF LPARAN expr RPARAN pos=stat (ELSE neg=stat)?
     | WHILE LPARAN expr RPARAN stat
+    | FOR LPARAN expr SEMI expr SEMI expr RPARAN stat
     | READ ID (COMA ID)* SEMI
     | WRITE expr (COMA expr)* SEMI
     | expr SEMI
@@ -29,7 +30,7 @@ expr
     | expr op=(EQ|NEQ) expr
     | expr AND expr
     | expr OR expr
-    | <assoc=right> ID '=' expr
+    | <assoc=right> ID ASSIGN expr
     ;
 
 primitive_type
@@ -72,6 +73,7 @@ IF: 'if';
 ELSE: 'else';
 
 WHILE: 'while';
+FOR: 'for';
 
 READ: 'read';
 WRITE: 'write';
