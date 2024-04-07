@@ -17,10 +17,10 @@ public class salangParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		STRING_VAL=1, SEMI=2, COMA=3, INT=4, FLOAT=5, STRING=6, BOOL=7, IF=8, 
-		ELSE=9, WHILE=10, FOR=11, READ=12, WRITE=13, ID=14, FLOAT_VAL=15, INT_VAL=16, 
-		BOOL_VAL=17, ASSIGN=18, MUL=19, DIV=20, ADD=21, SUB=22, MOD=23, CON=24, 
-		LES=25, GRE=26, NEG=27, EQ=28, NEQ=29, AND=30, OR=31, LPARAN=32, RPARAN=33, 
-		LCPARAN=34, RCPARAN=35, WS=36, COMMENT=37, LINE_COMMENT=38;
+		ELSE=9, WHILE=10, FOR=11, READ=12, WRITE=13, FLOAT_VAL=14, INT_VAL=15, 
+		BOOL_VAL=16, ASSIGN=17, MUL=18, DIV=19, ADD=20, SUB=21, MOD=22, CON=23, 
+		LES=24, GRE=25, NEG=26, EQ=27, NEQ=28, AND=29, OR=30, LPARAN=31, RPARAN=32, 
+		LCPARAN=33, RCPARAN=34, ID=35, WS=36, COMMENT=37, LINE_COMMENT=38;
 	public static final int
 		RULE_prog = 0, RULE_stat = 1, RULE_expr = 2, RULE_primitive_type = 3;
 	private static String[] makeRuleNames() {
@@ -34,18 +34,18 @@ public class salangParser extends Parser {
 		return new String[] {
 			null, null, "';'", "','", "'int'", "'float'", "'string'", "'bool'", "'if'", 
 			"'else'", "'while'", "'for'", "'read'", "'write'", null, null, null, 
-			null, "'='", "'*'", "'/'", "'+'", "'-'", "'%'", "'.'", "'<'", "'>'", 
-			"'!'", "'=='", "'!='", "'&&'", "'||'", "'('", "')'", "'{'", "'}'"
+			"'='", "'*'", "'/'", "'+'", "'-'", "'%'", "'.'", "'<'", "'>'", "'!'", 
+			"'=='", "'!='", "'&&'", "'||'", "'('", "')'", "'{'", "'}'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, "STRING_VAL", "SEMI", "COMA", "INT", "FLOAT", "STRING", "BOOL", 
-			"IF", "ELSE", "WHILE", "FOR", "READ", "WRITE", "ID", "FLOAT_VAL", "INT_VAL", 
+			"IF", "ELSE", "WHILE", "FOR", "READ", "WRITE", "FLOAT_VAL", "INT_VAL", 
 			"BOOL_VAL", "ASSIGN", "MUL", "DIV", "ADD", "SUB", "MOD", "CON", "LES", 
 			"GRE", "NEG", "EQ", "NEQ", "AND", "OR", "LPARAN", "RPARAN", "LCPARAN", 
-			"RCPARAN", "WS", "COMMENT", "LINE_COMMENT"
+			"RCPARAN", "ID", "WS", "COMMENT", "LINE_COMMENT"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -134,7 +134,7 @@ public class salangParser extends Parser {
 				setState(11); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 21613510134L) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 45166493174L) != 0) );
 			setState(13);
 			match(EOF);
 			}
@@ -305,7 +305,7 @@ public class salangParser extends Parser {
 				setState(20);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 21613510134L) != 0)) {
+				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 45166493174L) != 0)) {
 					{
 					{
 					setState(17);
@@ -476,13 +476,13 @@ public class salangParser extends Parser {
 				}
 				break;
 			case STRING_VAL:
-			case ID:
 			case FLOAT_VAL:
 			case INT_VAL:
 			case BOOL_VAL:
 			case SUB:
 			case NEG:
 			case LPARAN:
+			case ID:
 				_localctx = new ExprStatContext(_localctx);
 				enterOuterAlt(_localctx, 8);
 				{
@@ -802,7 +802,7 @@ public class salangParser extends Parser {
 						setState(108);
 						((MulDivModExprContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
-						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 9961472L) != 0)) ) {
+						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 4980736L) != 0)) ) {
 							((MulDivModExprContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
@@ -823,7 +823,7 @@ public class salangParser extends Parser {
 						setState(111);
 						((AddSubConExprContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
-						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 23068672L) != 0)) ) {
+						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 11534336L) != 0)) ) {
 							((AddSubConExprContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
@@ -1033,35 +1033,35 @@ public class salangParser extends Parser {
 		"\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0005\u0002~\b\u0002\n\u0002"+
 		"\f\u0002\u0081\t\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
 		"\u0003\u0003\u0087\b\u0003\u0001\u0003\u0000\u0001\u0004\u0004\u0000\u0002"+
-		"\u0004\u0006\u0000\u0004\u0002\u0000\u0013\u0014\u0017\u0017\u0002\u0000"+
-		"\u0015\u0016\u0018\u0018\u0001\u0000\u0019\u001a\u0001\u0000\u001c\u001d"+
+		"\u0004\u0006\u0000\u0004\u0002\u0000\u0012\u0013\u0016\u0016\u0002\u0000"+
+		"\u0014\u0015\u0017\u0017\u0001\u0000\u0018\u0019\u0001\u0000\u001b\u001c"+
 		"\u00a3\u0000\t\u0001\u0000\u0000\u0000\u0002V\u0001\u0000\u0000\u0000"+
 		"\u0004i\u0001\u0000\u0000\u0000\u0006\u0086\u0001\u0000\u0000\u0000\b"+
 		"\n\u0003\u0002\u0001\u0000\t\b\u0001\u0000\u0000\u0000\n\u000b\u0001\u0000"+
 		"\u0000\u0000\u000b\t\u0001\u0000\u0000\u0000\u000b\f\u0001\u0000\u0000"+
 		"\u0000\f\r\u0001\u0000\u0000\u0000\r\u000e\u0005\u0000\u0000\u0001\u000e"+
-		"\u0001\u0001\u0000\u0000\u0000\u000f\u0010\u0005\"\u0000\u0000\u0010\u0014"+
+		"\u0001\u0001\u0000\u0000\u0000\u000f\u0010\u0005!\u0000\u0000\u0010\u0014"+
 		"\u0003\u0002\u0001\u0000\u0011\u0013\u0003\u0002\u0001\u0000\u0012\u0011"+
 		"\u0001\u0000\u0000\u0000\u0013\u0016\u0001\u0000\u0000\u0000\u0014\u0012"+
 		"\u0001\u0000\u0000\u0000\u0014\u0015\u0001\u0000\u0000\u0000\u0015\u0017"+
 		"\u0001\u0000\u0000\u0000\u0016\u0014\u0001\u0000\u0000\u0000\u0017\u0018"+
-		"\u0005#\u0000\u0000\u0018W\u0001\u0000\u0000\u0000\u0019\u001a\u0003\u0006"+
-		"\u0003\u0000\u001a\u001f\u0005\u000e\u0000\u0000\u001b\u001c\u0005\u0003"+
-		"\u0000\u0000\u001c\u001e\u0005\u000e\u0000\u0000\u001d\u001b\u0001\u0000"+
-		"\u0000\u0000\u001e!\u0001\u0000\u0000\u0000\u001f\u001d\u0001\u0000\u0000"+
-		"\u0000\u001f \u0001\u0000\u0000\u0000 \"\u0001\u0000\u0000\u0000!\u001f"+
-		"\u0001\u0000\u0000\u0000\"#\u0005\u0002\u0000\u0000#W\u0001\u0000\u0000"+
-		"\u0000$%\u0005\b\u0000\u0000%&\u0005 \u0000\u0000&\'\u0003\u0004\u0002"+
-		"\u0000\'(\u0005!\u0000\u0000(+\u0003\u0002\u0001\u0000)*\u0005\t\u0000"+
+		"\u0005\"\u0000\u0000\u0018W\u0001\u0000\u0000\u0000\u0019\u001a\u0003"+
+		"\u0006\u0003\u0000\u001a\u001f\u0005#\u0000\u0000\u001b\u001c\u0005\u0003"+
+		"\u0000\u0000\u001c\u001e\u0005#\u0000\u0000\u001d\u001b\u0001\u0000\u0000"+
+		"\u0000\u001e!\u0001\u0000\u0000\u0000\u001f\u001d\u0001\u0000\u0000\u0000"+
+		"\u001f \u0001\u0000\u0000\u0000 \"\u0001\u0000\u0000\u0000!\u001f\u0001"+
+		"\u0000\u0000\u0000\"#\u0005\u0002\u0000\u0000#W\u0001\u0000\u0000\u0000"+
+		"$%\u0005\b\u0000\u0000%&\u0005\u001f\u0000\u0000&\'\u0003\u0004\u0002"+
+		"\u0000\'(\u0005 \u0000\u0000(+\u0003\u0002\u0001\u0000)*\u0005\t\u0000"+
 		"\u0000*,\u0003\u0002\u0001\u0000+)\u0001\u0000\u0000\u0000+,\u0001\u0000"+
-		"\u0000\u0000,W\u0001\u0000\u0000\u0000-.\u0005\n\u0000\u0000./\u0005 "+
-		"\u0000\u0000/0\u0003\u0004\u0002\u000001\u0005!\u0000\u000012\u0003\u0002"+
+		"\u0000\u0000,W\u0001\u0000\u0000\u0000-.\u0005\n\u0000\u0000./\u0005\u001f"+
+		"\u0000\u0000/0\u0003\u0004\u0002\u000001\u0005 \u0000\u000012\u0003\u0002"+
 		"\u0001\u00002W\u0001\u0000\u0000\u000034\u0005\u000b\u0000\u000045\u0005"+
-		" \u0000\u000056\u0003\u0004\u0002\u000067\u0005\u0002\u0000\u000078\u0003"+
-		"\u0004\u0002\u000089\u0005\u0002\u0000\u00009:\u0003\u0004\u0002\u0000"+
-		":;\u0005!\u0000\u0000;<\u0003\u0002\u0001\u0000<W\u0001\u0000\u0000\u0000"+
-		"=>\u0005\f\u0000\u0000>C\u0005\u000e\u0000\u0000?@\u0005\u0003\u0000\u0000"+
-		"@B\u0005\u000e\u0000\u0000A?\u0001\u0000\u0000\u0000BE\u0001\u0000\u0000"+
+		"\u001f\u0000\u000056\u0003\u0004\u0002\u000067\u0005\u0002\u0000\u0000"+
+		"78\u0003\u0004\u0002\u000089\u0005\u0002\u0000\u00009:\u0003\u0004\u0002"+
+		"\u0000:;\u0005 \u0000\u0000;<\u0003\u0002\u0001\u0000<W\u0001\u0000\u0000"+
+		"\u0000=>\u0005\f\u0000\u0000>C\u0005#\u0000\u0000?@\u0005\u0003\u0000"+
+		"\u0000@B\u0005#\u0000\u0000A?\u0001\u0000\u0000\u0000BE\u0001\u0000\u0000"+
 		"\u0000CA\u0001\u0000\u0000\u0000CD\u0001\u0000\u0000\u0000DF\u0001\u0000"+
 		"\u0000\u0000EC\u0001\u0000\u0000\u0000FW\u0005\u0002\u0000\u0000GH\u0005"+
 		"\r\u0000\u0000HM\u0003\u0004\u0002\u0000IJ\u0005\u0003\u0000\u0000JL\u0003"+
@@ -1074,11 +1074,11 @@ public class salangParser extends Parser {
 		"\u0000\u0000\u0000V3\u0001\u0000\u0000\u0000V=\u0001\u0000\u0000\u0000"+
 		"VG\u0001\u0000\u0000\u0000VR\u0001\u0000\u0000\u0000VU\u0001\u0000\u0000"+
 		"\u0000W\u0003\u0001\u0000\u0000\u0000XY\u0006\u0002\uffff\uffff\u0000"+
-		"Yj\u0005\u000e\u0000\u0000Z[\u0005 \u0000\u0000[\\\u0003\u0004\u0002\u0000"+
-		"\\]\u0005!\u0000\u0000]j\u0001\u0000\u0000\u0000^j\u0005\u0011\u0000\u0000"+
-		"_j\u0005\u0010\u0000\u0000`j\u0005\u000f\u0000\u0000aj\u0005\u0001\u0000"+
-		"\u0000bc\u0005\u0016\u0000\u0000cj\u0003\u0004\u0002\tde\u0005\u001b\u0000"+
-		"\u0000ej\u0003\u0004\u0002\bfg\u0005\u000e\u0000\u0000gh\u0005\u0012\u0000"+
+		"Yj\u0005#\u0000\u0000Z[\u0005\u001f\u0000\u0000[\\\u0003\u0004\u0002\u0000"+
+		"\\]\u0005 \u0000\u0000]j\u0001\u0000\u0000\u0000^j\u0005\u0010\u0000\u0000"+
+		"_j\u0005\u000f\u0000\u0000`j\u0005\u000e\u0000\u0000aj\u0005\u0001\u0000"+
+		"\u0000bc\u0005\u0015\u0000\u0000cj\u0003\u0004\u0002\tde\u0005\u001a\u0000"+
+		"\u0000ej\u0003\u0004\u0002\bfg\u0005#\u0000\u0000gh\u0005\u0011\u0000"+
 		"\u0000hj\u0003\u0004\u0002\u0001iX\u0001\u0000\u0000\u0000iZ\u0001\u0000"+
 		"\u0000\u0000i^\u0001\u0000\u0000\u0000i_\u0001\u0000\u0000\u0000i`\u0001"+
 		"\u0000\u0000\u0000ia\u0001\u0000\u0000\u0000ib\u0001\u0000\u0000\u0000"+
@@ -1087,8 +1087,8 @@ public class salangParser extends Parser {
 		"\u0002\bno\n\u0006\u0000\u0000op\u0007\u0001\u0000\u0000p~\u0003\u0004"+
 		"\u0002\u0007qr\n\u0005\u0000\u0000rs\u0007\u0002\u0000\u0000s~\u0003\u0004"+
 		"\u0002\u0006tu\n\u0004\u0000\u0000uv\u0007\u0003\u0000\u0000v~\u0003\u0004"+
-		"\u0002\u0005wx\n\u0003\u0000\u0000xy\u0005\u001e\u0000\u0000y~\u0003\u0004"+
-		"\u0002\u0004z{\n\u0002\u0000\u0000{|\u0005\u001f\u0000\u0000|~\u0003\u0004"+
+		"\u0002\u0005wx\n\u0003\u0000\u0000xy\u0005\u001d\u0000\u0000y~\u0003\u0004"+
+		"\u0002\u0004z{\n\u0002\u0000\u0000{|\u0005\u001e\u0000\u0000|~\u0003\u0004"+
 		"\u0002\u0003}k\u0001\u0000\u0000\u0000}n\u0001\u0000\u0000\u0000}q\u0001"+
 		"\u0000\u0000\u0000}t\u0001\u0000\u0000\u0000}w\u0001\u0000\u0000\u0000"+
 		"}z\u0001\u0000\u0000\u0000~\u0081\u0001\u0000\u0000\u0000\u007f}\u0001"+

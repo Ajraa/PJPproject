@@ -15,7 +15,7 @@ stat
     | SEMI #semiStat
     ;
 
-expr
+expr 
     : ID #idExpr
     | LPARAN expr RPARAN #paranExpr
     | BOOL_VAL #boolExpr
@@ -78,8 +78,6 @@ FOR: 'for';
 READ: 'read';
 WRITE: 'write';
 
-ID: [a-zA-Z] ([a-zA-Z0-9]*)?;
-
 FLOAT_VAL: [0-9]+'.'[0-9]+;
 INT_VAL: [0-9]+; 
 BOOL_VAL: ('true'|'false');
@@ -107,6 +105,9 @@ RPARAN: ')';
 LCPARAN: '{';
 RCPARAN: '}';
 
+ID: [a-zA-Z] ([a-zA-Z0-9]*)?;
+
 WS : [ \t\r\n]+ -> skip;
 COMMENT: '/*' .*? '*/' -> skip;
 LINE_COMMENT: '//' ~[\r\n]* -> skip;
+
