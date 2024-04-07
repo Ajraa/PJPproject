@@ -25,6 +25,12 @@ namespace PJPproject
       {
         Console.WriteLine("Bez chyby");
       }
+
+      VisitorTypeCheck visitor = new VisitorTypeCheck();
+      visitor.Visit(tree);
+      foreach (string err in visitor.Errors)
+        Console.WriteLine(err);
+
     }
   }
 }

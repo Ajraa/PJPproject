@@ -4,33 +4,33 @@ prog: stat+ EOF;
 
 
 stat
-    : LCPARAN stat (stat)* RCPARAN
-    | primitive_type ID (COMA ID)* SEMI
-    | IF LPARAN expr RPARAN pos=stat (ELSE neg=stat)?
-    | WHILE LPARAN expr RPARAN stat
-    | FOR LPARAN expr SEMI expr SEMI expr RPARAN stat
-    | READ ID (COMA ID)* SEMI
-    | WRITE expr (COMA expr)* SEMI
-    | expr SEMI
-    | SEMI
+    : LCPARAN stat (stat)* RCPARAN #paranStat
+    | primitive_type ID (COMA ID)* SEMI #declarationOfVariable
+    | IF LPARAN expr RPARAN pos=stat (ELSE neg=stat)? #ifStat
+    | WHILE LPARAN expr RPARAN stat #whileLoop
+    | FOR LPARAN expr SEMI expr SEMI expr RPARAN stat #forLoop
+    | READ ID (COMA ID)* SEMI #readStat
+    | WRITE expr (COMA expr)* SEMI #writeStat
+    | expr SEMI #exprStat
+    | SEMI #semiStat
     ;
 
 expr
-    : ID
-    | LPARAN expr RPARAN
-    | BOOL_VAL
-    | INT_VAL
-    | FLOAT_VAL
-    | STRING_VAL
-    | prefix=SUB expr
-    | prefix=NEG expr
-    | expr op=(MUL|DIV|MOD) expr
-    | expr op=(ADD|SUB|CON) expr
-    | expr op=(LES|GRE) expr
-    | expr op=(EQ|NEQ) expr
-    | expr AND expr
-    | expr OR expr
-    | <assoc=right> ID ASSIGN expr
+    : ID #idExpr
+    | LPARAN expr RPARAN #paranExpr
+    | BOOL_VAL #boolExpr
+    | INT_VAL #intExpr
+    | FLOAT_VAL #floatExpr
+    | STRING_VAL #stringExpr
+    | prefix=SUB expr #subExpr
+    | prefix=NEG expr #negExpr
+    | expr op=(MUL|DIV|MOD) expr #mulDivModExpr
+    | expr op=(ADD|SUB|CON) expr #addSubConExpr
+    | expr op=(LES|GRE) expr #lesGreExpr
+    | expr op=(EQ|NEQ) expr #eqNeqExpr
+    | expr op=AND expr #andExpr
+    | expr op=OR expr #orExpr
+    | <assoc=right> ID ASSIGN expr #assignExpr
     ;
 
 primitive_type
