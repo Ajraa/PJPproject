@@ -201,5 +201,26 @@ namespace PJPproject
         Errors.Add("While očekává bool - " + context.Start.Line);
       return base.VisitWhileLoop(context);
     }
-  }
+
+		public override string VisitTernaryExpr([NotNull] salangParser.TernaryExprContext context)
+		{
+			string type1 = Visit(context.children[0]);
+			string type2 = Visit(context.children[2]);
+      string type3 = Visit(context.children[4]);
+      Console.WriteLine(type1);
+			Console.WriteLine(type2);
+			Console.WriteLine(type3);
+
+      if (type1 != "bool")
+        Errors.Add("Ternární operátor očekává bool - " + context.Start.Line);
+      else if (type2 == type3)
+        return type2;
+      else if ((type2 == "float" && type3 == "int") || (type2 == "int" && type3 == "float"))
+        return "float";
+      else
+        Errors.Add("Typy v ternarnárním operátor se neshodují " + context.Start.Line);
+
+			return base.VisitTernaryExpr(context);
+		}
+	}
 }

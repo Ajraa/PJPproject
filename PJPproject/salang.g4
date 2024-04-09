@@ -30,6 +30,7 @@ expr
     | expr op=(EQ|NEQ) expr #eqNeqExpr
     | expr op=AND expr #andExpr
     | expr op=OR expr #orExpr
+    | expr QUEST expr COL expr #ternaryExpr
     | <assoc=right> ID ASSIGN expr #assignExpr
     ;
 
@@ -104,6 +105,8 @@ LPARAN: '(';
 RPARAN: ')';
 LCPARAN: '{';
 RCPARAN: '}';
+QUEST: '?';
+COL: ':';
 
 ID: [a-zA-Z] ([a-zA-Z0-9]*)?;
 
