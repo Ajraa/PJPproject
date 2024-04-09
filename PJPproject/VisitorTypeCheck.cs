@@ -134,7 +134,7 @@ namespace PJPproject
       else
       {
         if ((type1 != "int" && type1 != "float") || (type2 != "int" && type2 != "float"))
-          Errors.Add($"Operace {context.op} očekává int nebo float - " + context.Start.Line);
+          Errors.Add($"Operace {context.op.Text} očekává int nebo float - " + context.Start.Line);
         else if ((type1 == "float" && type2 == "float") || type1 != type2)
           return "float";
         else
@@ -150,7 +150,7 @@ namespace PJPproject
       string type2 = Visit(context.children[2]);
 
       if ((type1 != "int" && type1 != "float") || (type2 != "int" && type2 != "float"))
-        Errors.Add($"Operace {context.op} očekává int nebo float - " + context.Start.Line);
+        Errors.Add($"Operace {context.op.Text} očekává int nebo float - " + context.Start.Line);
       else
         return "bool";
 
@@ -168,7 +168,7 @@ namespace PJPproject
       string type2 = Visit(context.children[2]);
 
       if (type1 != "bool" || type2 != "bool")
-        Errors.Add($"Operace {context.op} očekává bool - " + context.Start.Line);
+        Errors.Add($"Operace {context.op.Text} očekává bool - " + context.Start.Line);
       else
         return "bool";
 
@@ -181,7 +181,7 @@ namespace PJPproject
       string type2 = Visit(context.children[2]);
 
       if (type1 != "bool" || type2 != "bool")
-        Errors.Add($"Operace {context.op} očekává bool - " + context.Start.Line);
+        Errors.Add($"Operace {context.op.Type} očekává bool - " + context.Start.Line);
       else
         return "bool";
 
