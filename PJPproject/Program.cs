@@ -28,9 +28,29 @@ namespace PJPproject
 
       VisitorTypeCheck visitor = new VisitorTypeCheck();
       visitor.Visit(tree);
-      foreach (string err in visitor.Errors)
-        Console.WriteLine(err);
 
+      if (visitor.Errors.Count > 0)
+      {
+        foreach (string err in visitor.Errors)
+          Console.WriteLine(err);
+        return;
+      }
+
+      TargetVisitor targetVisitor = new TargetVisitor();
+      targetVisitor.TypeVisitor = visitor;
+      string target = targetVisitor.Visit(tree);
+      //Console.WriteLine(target);
+      try
+      {
+        using (StreamWriter writer = new StreamWriter("target.txt"))
+        {
+          writer.Write(target);
+        }
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e.ToString());
+      }
     }
   }
 }
