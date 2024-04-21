@@ -80,7 +80,6 @@ namespace PJPproject
       if (context.ELSE() != null)
         sb.Append(Visit(context.stat()[1]));
       sb.AppendLine($"label {labelTwo}");
-      sb.AppendLine("pop");
       return sb.ToString();
     }
 
@@ -126,10 +125,7 @@ namespace PJPproject
 
     public override string VisitExprStat([NotNull] salangParser.ExprStatContext context)
     {
-      StringBuilder sb = new StringBuilder();
-      sb.Append(Visit(context.expr()));
-      sb.AppendLine("pop");
-      return sb.ToString();
+      return Visit(context.expr());
     }
 
     // Expr visitors
@@ -190,9 +186,10 @@ namespace PJPproject
       var left = Visit(context.expr()[0]);
       var right = Visit(context.expr()[1]);
       sb.Append(left);
-			if (TypeVisitor.Visit(context.expr()[0]) != TypeVisitor.Visit(context.expr()[1]))
-				sb.AppendLine("itof");
-			sb.Append(right);
+      sb.Append(right);
+      
+      if (TypeVisitor.Visit(context.expr()[0]) != TypeVisitor.Visit(context.expr()[1]))
+        sb.AppendLine("itof");
 
 
       if (context.op.Text.Equals("*"))
@@ -212,11 +209,10 @@ namespace PJPproject
       var left = Visit(context.expr()[0]);
       var right = Visit(context.expr()[1]);
       sb.Append(left);
-			if (TypeVisitor.Visit(context.expr()[0]) != TypeVisitor.Visit(context.expr()[1]))
-				sb.AppendLine("itof");
-			sb.Append(right);
+      sb.Append(right);
 
-      
+      if (TypeVisitor.Visit(context.expr()[0]) != TypeVisitor.Visit(context.expr()[1]))
+        sb.AppendLine("itof");
 
       if (context.op.Text.Equals("+"))
         sb.AppendLine("add");
@@ -237,20 +233,15 @@ namespace PJPproject
       Console.WriteLine($"{TypeVisitor.Visit(context.expr()[0])} != {TypeVisitor.Visit(context.expr()[1])}");
       sb.Append(left);
 
-      char type = TypeVisitor.Visit(context.expr()[0]).ToUpper()[0];
-
       if (TypeVisitor.Visit(context.expr()[0]) != TypeVisitor.Visit(context.expr()[1]))
-      {
-				sb.AppendLine("itof");
-        type = 'F';
-			}
+        sb.AppendLine("itof");
 
-			sb.Append(right);
+      sb.Append(right);
 
       if (context.op.Text.Equals(">"))
-        sb.AppendLine($"gt {type}");
+        sb.AppendLine("gt");
       else
-        sb.AppendLine($"lt {type}");
+        sb.AppendLine("lt");
 
       return sb.ToString();
     }
@@ -262,17 +253,14 @@ namespace PJPproject
       var left = Visit(context.expr()[0]);
       var right = Visit(context.expr()[1]);
 
-			char type = TypeVisitor.Visit(context.expr()[0]).ToUpper()[0];
+      sb.Append(left);
 
-			if (TypeVisitor.Visit(context.expr()[0]) != TypeVisitor.Visit(context.expr()[1]))
-			{
-				sb.AppendLine("itof");
-				type = 'F';
-			}
+      if (TypeVisitor.Visit(context.expr()[0]) != TypeVisitor.Visit(context.expr()[1]))
+        sb.AppendLine("itof");
 
       sb.Append(right);
 
-      sb.AppendLine($"eq {type}");
+      sb.AppendLine("eq");
       if (context.op.Text.Equals("!="))
         sb.AppendLine("not");
 
@@ -318,5 +306,5 @@ namespace PJPproject
         sb.AppendLine("pop");
       return sb.ToString();
     }
-	}
+  }
 }
