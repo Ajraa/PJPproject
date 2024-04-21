@@ -147,7 +147,8 @@ namespace PJPproject
 
     public override string VisitFloatExpr([NotNull] salangParser.FloatExprContext context)
     {
-      var value = float.Parse(context.FLOAT_VAL().GetText());
+      var value = context.FLOAT_VAL().GetText();
+
       return $"push F {value}\n";
     }
 
@@ -185,11 +186,28 @@ namespace PJPproject
 
       var left = Visit(context.expr()[0]);
       var right = Visit(context.expr()[1]);
-      sb.Append(left);
-      sb.Append(right);
       
       if (TypeVisitor.Visit(context.expr()[0]) != TypeVisitor.Visit(context.expr()[1]))
-        sb.AppendLine("itof");
+      {
+        if(TypeVisitor.Visit(context.expr()[0]) == "float")
+        {
+          sb.Append(left);
+          sb.Append(right);
+          sb.AppendLine("itof");
+
+        }
+        else
+        {
+          sb.Append(left);
+          sb.AppendLine("itof");
+          sb.Append(right);
+        }
+      }
+      else
+      {
+        sb.Append(left);
+        sb.Append(right);
+      }
 
 
       if (context.op.Text.Equals("*"))
@@ -208,11 +226,28 @@ namespace PJPproject
 
       var left = Visit(context.expr()[0]);
       var right = Visit(context.expr()[1]);
-      sb.Append(left);
-      sb.Append(right);
 
       if (TypeVisitor.Visit(context.expr()[0]) != TypeVisitor.Visit(context.expr()[1]))
-        sb.AppendLine("itof");
+      {
+        if (TypeVisitor.Visit(context.expr()[0]) == "float")
+        {
+          sb.Append(left);
+          sb.Append(right);
+          sb.AppendLine("itof");
+
+        }
+        else
+        {
+          sb.Append(left);
+          sb.AppendLine("itof");
+          sb.Append(right);
+        }
+      }
+      else
+      {
+        sb.Append(left);
+        sb.Append(right);
+      }
 
       if (context.op.Text.Equals("+"))
         sb.AppendLine("add");
@@ -297,9 +332,11 @@ namespace PJPproject
 
       var right = Visit(context.expr());
       var id = context.ID().GetText();
+      
       sb.Append(right);
       if (nameTypes[id] != TypeVisitor.Visit(context.expr()))
         sb.AppendLine("itof");
+
       sb.AppendLine($"save {id}");
       sb.AppendLine($"load {id}");
       if (!(context.parent is salangParser.ExprContext))

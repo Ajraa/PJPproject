@@ -29,10 +29,8 @@ namespace PJPproject
 
     public override string VisitAssignExpr([NotNull] salangParser.AssignExprContext context)
     {
-      Console.WriteLine(context.GetText());
       String variable = context.ID().GetText();
       string result = this.Visit(context.expr());
-      Console.WriteLine($"{variable} {result}");
       if (!Types.ContainsKey(variable) ||  Types[variable] != result && (Types[variable] != "float" && result != "int"))
         Errors.Add("Špatný datový typ - " + context.Start.Line);
 
@@ -207,9 +205,6 @@ namespace PJPproject
 			string type1 = Visit(context.children[0]);
 			string type2 = Visit(context.children[2]);
       string type3 = Visit(context.children[4]);
-      Console.WriteLine(type1);
-			Console.WriteLine(type2);
-			Console.WriteLine(type3);
 
       if (type1 != "bool")
         Errors.Add("Ternární operátor očekává bool - " + context.Start.Line);

@@ -51,6 +51,17 @@ namespace PJPproject
       {
         Console.WriteLine(e.ToString());
       }
+
+
+      try
+      {
+        var intertpreter = new VirtualMachine("target.txt");
+        intertpreter.Run();
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e.StackTrace);
+      }
     }
   }
 }
